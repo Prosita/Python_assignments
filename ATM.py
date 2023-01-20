@@ -1,86 +1,37 @@
-import re
+print("Welcome to State bank of India")
+p=int(input("Enter your 4 digit pin number: "))
+m = 25000
+if(p == 1234):
+	print("1-Withdraw")
+	print("2-Balance Enquiry")
+	print("3-Fast Cash")
+	c = int(input("Please choose transactions: "))
+	if (c == 1):
+		w=int(input("Enter withdraw amount: "))
+		if (w < m and w%100 == 0):
+			print("Please take your amount:", w)
+		else:
+			print("Invalid cash")
 
-class Bank:
-    def __init__(self) -> None:
-        self.__Accounts = {"ACC1234":{"Name":"Prosita","Password":"1234","PhoneNo":"9876543210","Balance":30000}}
-        self.__NoOfAccounts = 1
-    
-    def isValid(self,AccountNo):
-        if AccountNo not in self.__Accounts:
-            print("Account do not exist.")
-            return False
-        #print(AccountNo)
-        Password = input("Enter Your Password : ")
-
-        if self.__Accounts[AccountNo]["Password"] == Password:
-            print("\t\t!!!...Valid Credentials...!!!\n")
-            return True
-        else:
-            print("\t\t!!!...Invalid Credentials...!!!")
-            return False
-    
-    def createAccount(self):
-        name = input("\nEnter User Name (Without Spaces): ")
-        phoneNum = input("Enter Phone Number : ")
-        validNum = re.fullmatch('[6-9][0-9]{9}',phoneNum)
-        #print(re.fullmatch('[6-9][0-9]{9}',phoneNum))
-        while validNum == None:
-            phoneNum = input("Enter a valid Phone Number : ")
-            validNum = re.fullmatch('[6-9][0-9]{9}',phoneNum)
-
-        amount = int(input("Enter Deposite Amount : "))
-        while amount < 500:
-            amount = int(input("Deposite Amount should be atleast Rs. 500 : "))
-
-        self.__NoOfAccounts +=1
-        __AccountNo = 'ACC'+str(100 + self.__NoOfAccounts)
-        print("Your Account Number is: ",__AccountNo)
-
-        __password1 = input("Enter Password : ")
-        __password2 = input("Re-Enter Password : ")
-        while __password1 != __password2:
-            print("Passwords Does not Match...!!!")
-            __password1 = input("Enter Password : ")
-            __password2 = input("Re-Enter Password : ")
-
-        # self.__Accounts[__AccountNo]["Name"] = name
-        # self.__Accounts[__AccountNo]["Password"] = __password1
-        # self.__Accounts[__AccountNo]["PhoneNo"] = phoneNum
-        # self.__Accounts[__AccountNo]["Balance"] = amount
-        self.__Accounts[__AccountNo] = {"Name" : name, "Password" : __password1, "PhoneNo" : phoneNum, "Balance" : amount}
-        self.__Accounts[__AccountNo]["History"] = "Amount Deposited: "+str(amount)+" Remaining balance: "+str(amount)+"\n"
-        print("Your Account Details are: ")
-        for i in self.__Accounts[__AccountNo]:
-            print(i," : ",self.__Accounts[__AccountNo][i])
-
-    def withdrawMoney(self,AccNum):
-        if self.__Accounts[AccNum]["Balance"] < 500:
-            print("Your Account Balance is not sufficient")
-            exit()
-        money = int(input("Enter Withdraw Amount : "))
-        if money > self.__Accounts[AccNum]["Balance"] - 500 :
-            print("Withdrawal Money Exceeded...!!!")
-        else:
-            self.__Accounts[AccNum]["Balance"] -= money
-            print("Money Withdrwal Successfull....!!!")
-            print("Remaining Balance : ",self.__Accounts[AccNum]["Balance"])
-
-print("\t\t\tWelome to KPMG ATM")
-B = Bank()
-AccountNo = input("Enter Your Account Number : ").upper()
-if not B.isValid(AccountNo):
-    exit()
-
-while(True):
-    print("\t\tPlease Enter Your Action")
-    print("1. New Account Creation\n2. Money Withdrawal\n3. Balance Enquiry\n4. Password Change\n5. Transaction History\n6. Exit")
-    action = int(input("Enter Your Choice : "))
-    if action == 1: B.createAccount()
-    elif action == 2: B.withdrawMoney(AccountNo)
-    elif action == 3: B.balanceEnquiry(AccountNo)
-    elif action == 4: B.passwordChange(AccountNo)
-    elif action == 5: B.transactionHistory(AccountNo)
-    elif action == 6: exit()
-    else : print("!!!...Invalid Choice...!!!")
-    choice = input("Do you want to continue y/n :")
-    if choice == "n" or choice == "N": exit()
+	elif(c==2):
+		print("Your available amount : ",m)
+	elif (c == 3):
+		print("1->5,000")
+		print("2->10,000")
+		print("3->15,000")
+		print("4->20,000")
+		f = int(input("Enter fast cash option: "))
+		if (f == 1 and 5000 < m):
+			print("please take cash 5000")
+		elif (f == 2 and 10000 < m):
+			print("please take cash 10000")
+		elif (f == 3 and 15000 < m):
+			print("please take cash 15000")
+		elif (f == 4 and 20000 < m):
+			print("please take cash 20000")
+		else:
+			print("Invalid fast cash option")
+		else:
+			print("Wrong choice")
+	else:
+		print("Wrong pin number")
