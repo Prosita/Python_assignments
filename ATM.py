@@ -2,7 +2,7 @@ import re
 
 class Bank:
     def __init__(self) -> None:
-        self.__Accounts = {"ACC101":{"Name":"Admin","Password":"Bank01","PhoneNo":"9000123456","Balance":10000}}
+        self.__Accounts = {"ACC1234":{"Name":"Prosita","Password":"1234","PhoneNo":"9876543210","Balance":30000}}
         self.__NoOfAccounts = 1
     
     def isValid(self,AccountNo):
